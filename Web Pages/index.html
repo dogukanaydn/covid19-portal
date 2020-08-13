@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+
+    <title>Anasayfa</title>
+    <link rel="stylesheet" href="/Css/styles.css" />
+  </head>
+
+  <body class="bg">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+      <a class="navbar-brand" href="index.html">Covid-19 Portal</a>
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="index.html">Anasayfa</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="turkiyede-durum.html">Türkiyede Durum</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="dunyada-durum.html">Dünyada Durum</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="haberler.html">Haberler</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="duyurular.html">Duyurular</a>
+        </li>
+      </ul>
+    </nav>
+    <div>
+      <div id="accordion" class="mx-5 pt-5">
+        <div class="card">
+          <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+              <button
+                class="btn btn-link"
+                data-toggle="collapse"
+                data-target="#collapseOne"
+                aria-expanded="true"
+                aria-controls="collapseOne"
+              >
+                Koronavirüs nedir?
+              </button>
+            </h5>
+          </div>
+
+          <div
+            id="collapseOne"
+            class="collapse show"
+            aria-labelledby="headingOne"
+            data-parent="#accordion"
+          >
+            <div class="card-body">
+              2019 yılının Aralık ayında, Çin’de birdenbire sebebi açıklanamayan
+              zatürre olguları ortaya çıkmaya başladı. Yapılan araştırmalar, bu
+              zatürre vakalarının daha önceden tanımlanmamış yeni bir tip
+              coronavirüs (coronavirus) olduğunu ortaya çıkardı. Virüsün bu
+              formuna, 2019 yılında ortaya çıktığı için, Coronavirus 2019 yani
+              COVID-19 denildi. Corona virüs aslında, hayvanlarda bolca
+              rastlanan bir virüstür. Son zamanlarda hastalığa neden olan
+              virüsün kaynağının, ise Çin'in Wuhan kentinde bulunan Huanan deniz
+              ürünleri pazarı olduğu düşünülmektedir. Önce hayvandan insana
+              bulaşan virüsün insandan insana da yayılabildiği zamanla
+              anlaşılmıştır.
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headingTwo">
+            <h5 class="mb-0">
+              <button
+                class="btn btn-link collapsed"
+                data-toggle="collapse"
+                data-target="#collapseTwo"
+                aria-expanded="false"
+                aria-controls="collapseTwo"
+              >
+                Koronavirüs nasıl yayılır?
+              </button>
+            </h5>
+          </div>
+          <div
+            id="collapseTwo"
+            class="collapse"
+            aria-labelledby="headingTwo"
+            data-parent="#accordion"
+          >
+            <div class="card-body">
+              Coronavirüsünün tam olarak insandan insana bulaşma yolunun
+              moleküler mekanizması şu anda çözülmüş olmasa da, genel olarak
+              solunum yolları hastalıklarının bulaşma prensibi benzerdir.
+              Solunum yolları hastalıkları, damlacık saçılması ile yayılır. Bu
+              yayılma türünde, hasta bir insan öksürdüğünde ya da hapşırdığında
+              etrafında bulunan kişiler, bu mikroba maruz kalmış olur. Bir başka
+              bulaşma yolu ise, damlacık ile kirlenen bir nesneyi kullanma
+              sonucunda oluşur.
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headingThree">
+            <h5 class="mb-0">
+              <button
+                class="btn btn-link collapsed"
+                data-toggle="collapse"
+                data-target="#collapseThree"
+                aria-expanded="false"
+                aria-controls="collapseThree"
+              >
+                Koronavirüs risk grubu nedir?
+              </button>
+            </h5>
+          </div>
+          <div
+            id="collapseThree"
+            class="collapse"
+            aria-labelledby="headingThree"
+            data-parent="#accordion"
+          >
+            <div class="card-body">
+              Dünya Sağlık Örgütü’ne göre canlı hayvanlarla uğraşanlar
+              (özellikle Uzak Doğu bölgesinde) en büyük risk altında olanlardır.
+              Bunun haricinde hasta kişilerle yakın temas halinde olan aile
+              bireyleri ve sağlık görevlileri de yine coronavirüs risk gurubunda
+              yer alır. Ölüm oranları açısından ise 65 yaş üstü grup daha yüksek
+              risk altındadır.
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headingFour">
+            <h5 class="mb-0">
+              <button
+                class="btn btn-link collapsed"
+                data-toggle="collapse"
+                data-target="#collapseFour"
+                aria-expanded="false"
+                aria-controls="collapseFour"
+              >
+                Koronavirüsünün semptomları nelerdir?
+              </button>
+            </h5>
+          </div>
+          <div
+            id="collapseFour"
+            class="collapse"
+            aria-labelledby="headingFour"
+            data-parent="#accordion"
+          >
+            <div class="card-body">
+              Coronavirüs hakkında şu ana kadar bilinen bilgiler doğrultusunda,
+              semptomlar orta dereceli ya da şiddetli olabilmektedir. En çok
+              gözlenen semptomlar; ateş, öksürük ve solunum güçlüğüdür. Burun
+              akıntısı, coronavirüste bildirilmemiştir. Bu nedenle, burun
+              akıntısı olmadan öksürük ve solunum güçlüğü ve ateş gözlendiğinde
+              kesinlikle kalabalık yerlerden uzak durmak ve en kısa sürede
+              sağlık kuruluşuna baş vurmak çok önemlidir. Ciddi coronavirüsü
+              vakalarında ise zatürre, böbrek yetmezliği ve ölüm meydana gelir.
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headingFive">
+            <h5 class="mb-0">
+              <button
+                class="btn btn-link collapsed"
+                data-toggle="collapse"
+                data-target="#collapseFive"
+                aria-expanded="false"
+                aria-controls="collapseFive"
+              >
+                Koronavirüs ölüm oranları nelerdir?
+              </button>
+            </h5>
+          </div>
+          <div
+            id="collapseFive"
+            class="collapse"
+            aria-labelledby="headingFive"
+            data-parent="#accordion"
+          >
+            <div class="card-body">
+              Dünya Sağlık Örgütü'ne göre, virüsün mortalite (ölüm) oranını
+              söylemek şu andaki bilgilere göre pek mümkün değildir. Buna
+              rağmen, 24 Şubat 2020 tarihinde yayımlanan bir makale, Çin’de 11
+              Şubat itibariyle doğrulanmış (test ile konfirme edilmiş) vakalar
+              üzerinden bir ölüm oranı çıkarımı sunmaktadır. Bu makaleye göre,
+              11 Şubat itibariyle Çin’de bulunan 72314 vakanın 44672 olgusu
+              doğrulanmış olgulardır. Genel vaka ölüm oranı bu hastalarda %2,3
+              olarak bulunmuştur (44672 onaylı vakada 1023 ölüm). Yaşlara göre
+              incelendiğinde ise 70-79 yaş arası vakalarda mortalite oranı %8’e
+              yükselmektedir. Bu oranlara bakıldığında yaşlı nüfusun en yüksek
+              risk altında olduğunu söylemek mümkündür.
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headingSix">
+            <h5 class="mb-0">
+              <button
+                class="btn btn-link collapsed"
+                data-toggle="collapse"
+                data-target="#collapseSix"
+                aria-expanded="false"
+                aria-controls="collapseSix"
+              >
+                Koronavirüsü nasıl teşhis edilir?
+              </button>
+            </h5>
+          </div>
+          <div
+            id="collapseSix"
+            class="collapse"
+            aria-labelledby="headingSix"
+            data-parent="#accordion"
+          >
+            <div class="card-body">
+              Coronavirüs, PCR (polimerize zincir reaksiyonu) adı verilen bir
+              testle teşhis edilir. Bu test ile sadece virüste bulunan genetik
+              materyal çoğaltılarak kesin tanı koyulabilir.
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headingSeven">
+            <h5 class="mb-0">
+              <button
+                class="btn btn-link collapsed"
+                data-toggle="collapse"
+                data-target="#collapseSeven"
+                aria-expanded="false"
+                aria-controls="collapseSeven"
+              >
+                Koronavirüs tedavisi nasıl olur?
+              </button>
+            </h5>
+          </div>
+          <div
+            id="collapseSeven"
+            class="collapse"
+            aria-labelledby="headingSeven"
+            data-parent="#accordion"
+          >
+            <div class="card-body">
+              Coronavirüs bir bakteri olmadığı için antibiyotikler işe yaramaz.
+              Şu anda coronavirüse özgü bir tedavi yoktur. Ana tedavi,
+              semptomatik tedavidir. Coronavirüs tedavisi ve coronavirüs aşısı
+              geliştirme çalışmaları sürmektedir. Her virüs gibi coronavirüste
+              de bağışıklık sistemini güçlü tutmak (yeterli kaliteli uyku,
+              dengeli beslenme ve fiziksel aktivite) önemlidir.
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header" id="headingEight">
+            <h5 class="mb-0">
+              <button
+                class="btn btn-link collapsed"
+                data-toggle="collapse"
+                data-target="#collapseEight"
+                aria-expanded="false"
+                aria-controls="collapseEight"
+              >
+                Koronavirüsünden korunmak için nasıl önlemler alınabilir?
+              </button>
+            </h5>
+          </div>
+          <div
+            id="collapseEight"
+            class="collapse"
+            aria-labelledby="headingEight"
+            data-parent="#accordion"
+          >
+            <div class="card-body">
+              Coronavirüsün yayılmasını azaltmak veya enfeksiyondan korunmak
+              için en temel önlem, temel hijyen kurallarına uymaktır. Bunlardan
+              en önemlisi ellerin yıkanmasıdır. Zarflı virüsler sabun ile
+              yıkanmaya, alkol ile dezenfekte edilmeye dayanıklı değillerdir. Bu
+              nedenle, el yıkama alışkanlığı olan ve genel hijyen kurallarına
+              dikkat eden toplumlarda bu virüsün yayılması daha yavaş olacaktır.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

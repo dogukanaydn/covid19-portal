@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+    <script src="/Js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <link rel="stylesheet" href="/Css/styles.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+
+    <title>Türkiyede Durum</title>
+  </head>
+
+  <body ng-app="myApp" ng-controller="myCtrl" class="bg">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+      <a class="navbar-brand" href="index.html">Covid-19 Portal</a>
+
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">Anasayfa</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="turkiyede-durum.html">Türkiyede Durum</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="dunyada-durum.html">Dünyada Durum</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="haberler.html">Haberler</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="duyurular.html">Duyurular</a>
+        </li>
+      </ul>
+    </nav>
+    <h1 class="text-center font-weight-bold pt-5">Türkiye</h1>
+    <div
+      class="d-flex justify-content-around pt-5"
+      ng-repeat="Country in data  | filter: { Country: 'Turkey' }"
+    >
+      <div class="card text-white text-center bg-danger" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Bugünkü Vaka Sayısı</h5>
+          <p class="card-text">
+            {{Country.NewConfirmed}}
+          </p>
+        </div>
+      </div>
+      <div class="card text-white text-center bg-danger" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Bugünkü İyileşen Sayısı</h5>
+          <p class="card-text">
+            {{Country.NewRecovered}}
+          </p>
+        </div>
+      </div>
+      <div class="card text-white text-center bg-danger" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Bugünkü Vefat Sayısı</h5>
+          <p class="card-text">
+            {{Country.NewDeaths}}
+          </p>
+        </div>
+      </div>
+    </div>
+    <div
+      class="d-flex justify-content-around pt-5"
+      ng-repeat="Country in data  | filter: { Country: 'Turkey' }"
+    >
+      <div class="card text-white text-center bg-danger" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Toplam Vaka Sayısı</h5>
+          <p class="card-text">
+            {{Country.TotalConfirmed}}
+          </p>
+        </div>
+      </div>
+      <div class="card text-white text-center bg-danger" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Toplam İyileşen Hasta Sayısı</h5>
+          <p class="card-text">
+            {{Country.TotalRecovered}}
+          </p>
+        </div>
+      </div>
+      <div class="card text-white text-center bg-danger" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Toplam Vefat Sayısı</h5>
+          <p class="card-text">
+            {{Country.TotalDeaths}}
+          </p>
+        </div>
+      </div>
+    </div>
+    <br />
+    <hr class="cizgi" />
+
+    <canvas id="chart-1"></canvas>
+    <hr class="cizgi" />
+    <canvas id="chart-2"></canvas>
+
+    <script>
+      chartIt_1();
+
+      async function chartIt_1() {
+        const data = await getData_1();
+        const ctx = document.getElementById("chart-1").getContext("2d");
+        const chart = new Chart(ctx, {
+          // The type of chart we want to create
+          type: "line",
+
+          // The data for our dataset
+          data: {
+            labels: data.gunler,
+            datasets: [
+              {
+                label: "Toplam Vefat Sayisi",
+                backgroundColor: "black",
+                borderColor: "black",
+                data: data.topVefat,
+                fill: false,
+              },
+              {
+                label: "Toplam Vaka Sayısı",
+                backgroundColor: "blue",
+                borderColor: "blue",
+                data: data.topVaka,
+                fill: false,
+              },
+              {
+                label: "Toplam İyileşen Hasta Sayısı",
+                backgroundColor: "rgb(255, 99, 132)",
+                borderColor: "rgb(255, 99, 132)",
+                data: data.topIyilesen,
+                fill: false,
+              },
+            ],
+          },
+
+          // Configuration options go here
+          options: {},
+        });
+      }
+
+      async function getData_1() {
+        const gunler = [];
+        const topVefat = [];
+        const topVaka = [];
+        const topIyilesen = [];
+
+        const response = await fetch("/Csv File/covid19-tablo1.csv");
+        const data = await response.text();
+
+        const table = data.split("\n").slice(1);
+        table.forEach((row) => {
+          const columns = row.split(",");
+          const gun = columns[0];
+          gunler.push(gun);
+          const toplamVefatSayisi = columns[1];
+          topVefat.push(toplamVefatSayisi);
+          const toplamVakaSayisi = columns[2];
+          topVaka.push(toplamVakaSayisi);
+          const toplamIyilesenHastaSayisi = columns[3];
+          topIyilesen.push(toplamIyilesenHastaSayisi);
+        });
+        return { gunler, topVefat, topVaka, topIyilesen };
+      }
+    </script>
+
+    <script>
+      chartIt_2();
+
+      async function chartIt_2() {
+        const data = await getData_2();
+        const ctx = document.getElementById("chart-2").getContext("2d");
+        const chart = new Chart(ctx, {
+          // The type of chart we want to create
+          type: "line",
+
+          // The data for our dataset
+          data: {
+            labels: data.gunler,
+            datasets: [
+              {
+                label: "Toplam Vaka Sayısı",
+                backgroundColor: "rgb(128, 0, 128)",
+                borderColor: "rgb(128, 0, 128)",
+                data: data.topVaka,
+                fill: false,
+              },
+              {
+                label: "Yeni Vaka Sayısı",
+                backgroundColor: "rgb(255, 51, 102)",
+                borderColor: "rgb(255, 51, 102)",
+                data: data.yeniVaka,
+                fill: false,
+              },
+            ],
+          },
+
+          // Configuration options go here
+          options: {},
+        });
+      }
+
+      async function getData_2() {
+        const gunler = [];
+        const topVaka = [];
+        const yeniVaka = [];
+
+        const response = await fetch("/Csv File/covid19-tablo2.csv");
+        const data = await response.text();
+
+        const table = data.split("\n").slice(1);
+        table.forEach((row) => {
+          const columns = row.split(",");
+          const gun = columns[0];
+          gunler.push(gun);
+          const toplamVakaSayisi = columns[1];
+          topVaka.push(toplamVakaSayisi);
+          const yeniVakaSayisi = columns[2];
+          yeniVaka.push(yeniVakaSayisi);
+        });
+
+        return { gunler, topVaka, yeniVaka };
+      }
+    </script>
+
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

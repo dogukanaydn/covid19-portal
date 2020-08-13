@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+    <script src="/Js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <link rel="stylesheet" href="/Css/styles.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+
+    <title>Haberler</title>
+  </head>
+  <body ng-app="myHaber" ng-controller="myCtrl">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+      <a class="navbar-brand" href="index.html">Covid-19 Portal</a>
+
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">Anasayfa</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="turkiyede-durum.html">Türkiyede Durum</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="dunyada-durum.html">Dünyada Durum</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="haberler.html">Haberler</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="duyurular.html">Duyurular</a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="flex-container bg">
+      <div class="card" ng-repeat="news in data" style="width: 18rem;">
+        <img
+          src="{{news.urlToImage}}"
+          class="card-img-top"
+          alt="{{news.title}}"
+        />
+        <div class="card-body text-center">
+          <h5 class="card-title">{{news.title}}</h5>
+          <p class="card-text">
+            {{news.description}}
+          </p>
+          <a href="{{news.url}}" target="_blank" class="btn btn-primary"
+            >Habere Git</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <script>
+      var app = angular.module("myHaber", []);
+      app.controller("myCtrl", function ($scope, $http) {
+        $scope.data = {};
+        $http
+          .get(
+            "http://newsapi.org/v2/top-headlines?country=tr&category=health&apiKey=6dbab7ff23d5471e9d6b48dc93f73bf9"
+          )
+          .then(function (response) {
+            $scope.data = response.data.articles;
+          });
+      });
+    </script>
+  </body>
+</html>

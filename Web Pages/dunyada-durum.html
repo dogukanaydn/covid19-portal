@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <link rel="stylesheet" href="/Css/styles.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+
+    <title>Dünyada Durum</title>
+  </head>
+
+  <body ng-app="myApp" ng-controller="myCtrl" class="bg">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+      <a class="navbar-brand" href="index.html">Covid-19 Portal</a>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">Anasayfa</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="turkiyede-durum.html">Türkiyede Durum</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="dunyada-durum.html">Dünyada Durum</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="haberler.html">Haberler</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="duyurular.html">Duyurular</a>
+        </li>
+      </ul>
+    </nav>
+
+    <div>
+      <div class="sel-option">
+        <div class="col-12 mb-2">
+          <h4 class="content-header-title">Lütfen Ülke Seçiniz</h4>
+
+          <select
+            class="custom-select"
+            ng-options="country as country.Country for country in data"
+            ng-model="selectedCountry"
+            ng-change="update()"
+          >
+            <option>{{country.Country}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="d-flex justify-content-around pt-5">
+        <div
+          class="card text-white text-center bg-danger"
+          style="width: 18rem;"
+        >
+          <div class="card-body">
+            <h5 class="card-title">Bugünkü Vaka Sayısı</h5>
+            <p class="card-text">
+              {{selectedCountry.NewConfirmed}}
+            </p>
+          </div>
+        </div>
+        <div
+          class="card text-white text-center bg-danger"
+          style="width: 18rem;"
+        >
+          <div class="card-body">
+            <h5 class="card-title">Bugünkü İyileşen Sayısı</h5>
+            <p class="card-text">
+              {{selectedCountry.NewRecovered}}
+            </p>
+          </div>
+        </div>
+        <div
+          class="card text-white text-center bg-danger"
+          style="width: 18rem;"
+        >
+          <div class="card-body">
+            <h5 class="card-title">Bugünkü Vefat Sayısı</h5>
+            <p class="card-text">
+              {{selectedCountry.NewDeaths}}
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-around pt-5">
+        <div
+          class="card text-white text-center bg-danger"
+          style="width: 18rem;"
+        >
+          <div class="card-body">
+            <h5 class="card-title">Toplam Vaka Sayısı</h5>
+            <p class="card-text">
+              {{selectedCountry.TotalConfirmed}}
+            </p>
+          </div>
+        </div>
+        <div
+          class="card text-white text-center bg-danger"
+          style="width: 18rem;"
+        >
+          <div class="card-body">
+            <h5 class="card-title">Toplam İyileşen Hasta Sayısı</h5>
+            <p class="card-text">
+              {{selectedCountry.TotalRecovered}}
+            </p>
+          </div>
+        </div>
+        <div
+          class="card text-white text-center bg-danger"
+          style="width: 18rem;"
+        >
+          <div class="card-body">
+            <h5 class="card-title">Toplam Vefat Sayısı</h5>
+            <p class="card-text">
+              {{selectedCountry.TotalDeaths}}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      getCountry();
+      function getCountry() {
+        var app = angular.module("myApp", []);
+        app.controller("myCtrl", function ($scope, $http) {
+          $scope.data = {};
+          $http
+            .get("https://api.covid19api.com/summary")
+            .then(function (response) {
+              $scope.data = response.data.Countries;
+              console.log($scope.data);
+            });
+        });
+      }
+    </script>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
